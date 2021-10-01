@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wally_app/constants.dart';
 import 'package:wally_app/models/wallpaper_model.dart';
+import 'package:wally_app/screens/detail_screen.dart';
 
 class LateatScreen extends StatelessWidget {
   const LateatScreen({Key? key}) : super(key: key);
@@ -41,13 +42,27 @@ class LateatScreen extends StatelessWidget {
           ),
           itemCount: wallpaper.length,
           itemBuilder: (BuildContext context, int index) {
-            return Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.black,
-                image:  DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage(wallpaper[index].image),
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        DetailScreen(wallpaper: wallpaper[index]),
+                  ),
+                );
+              },
+              child: Hero(
+                tag: wallpaper[index].id,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.black,
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage(wallpaper[index].image),
+                    ),
+                  ),
                 ),
               ),
             );
