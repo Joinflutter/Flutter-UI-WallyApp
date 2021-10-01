@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wally_app/constants.dart';
+import 'package:wally_app/models/categotires_model.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
@@ -30,24 +31,26 @@ class CategoriesScreen extends StatelessWidget {
         body: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: size.width * 0.08,
-            vertical: size.height * 0.02,
           ),
-          child: Column(
-            children: [
-              Container(
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+                children: List.generate(
+              categories.length,
+              (index) => Container(
+                margin: const EdgeInsets.only(top: 10,bottom: 10),
                 alignment: Alignment.center,
                 width: double.infinity,
                 height: size.height * 0.2,
                 decoration: BoxDecoration(
-                  color: Colors.black,
                   borderRadius: BorderRadius.circular(10),
-                  image: const DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('assets/images/art.png'),
+                  image:  DecorationImage(
+                    fit: BoxFit.fill,
+                    image: AssetImage(categories[index].image),
                   ),
                 ),
                 child: Text(
-                  'Art',
+                  categories[index].title,
                   style: GoogleFonts.poppins(
                     letterSpacing: 2,
                     fontWeight: FontWeight.bold,
@@ -55,8 +58,8 @@ class CategoriesScreen extends StatelessWidget {
                     fontSize: size.width * 0.07,
                   ),
                 ),
-              )
-            ],
+              ),
+            )),
           ),
         ),
       ),
