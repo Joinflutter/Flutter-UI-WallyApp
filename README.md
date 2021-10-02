@@ -1,4 +1,6 @@
-# wally_app
+# Flutter Ui (Wally App)
+
+![Flutter Login Ui](https://user-images.githubusercontent.com/87581799/135730854-668b1ecd-54f0-4486-b837-1e82745aae5c.png)
 
 A new Flutter project.
 
